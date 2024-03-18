@@ -1,0 +1,25 @@
+import { ChangeEvent, useState } from "react";
+
+export default function Edad (): JSX.Element{
+
+    const [laEdad, setLaEdad] = useState(0);
+
+    const comprobarEdad = (e: ChangeEvent<HTMLInputElement>) =>{
+        setLaEdad(Number(e.target.value))
+    }
+    
+    let mensaje = "";
+    
+    laEdad >= 18 ? 
+    mensaje = "Mayor de edad" : mensaje = "Menor de edad";
+    
+    laEdad == 0 ? mensaje = "Introduce una edad" : ""
+
+    return(
+        <div className="container mt-5">
+            <input placeholder="Introduce una edad" autoFocus style={{padding:5}} type="number" onChange={comprobarEdad}/>
+        <h1>{mensaje}</h1>
+        </div>
+    )
+   // return mensaje
+}

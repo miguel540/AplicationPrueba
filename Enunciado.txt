@@ -40,40 +40,49 @@ PARTE 1
 
 PARTE 2
 •	Introducir un input para teclear una edad. Mediante condicionales ternarios, se sacará un mensaje “es mayor de edad” si la edad es mayor o igual a 18 u otro mensaje “es menor de edad” si la edad es menor a 18.
-    export const Edad = (): JSX.Element => {
-    
+ import { useState } from "react";
+
+export const Edad = (): JSX.Element => {
+  const [inputEdad, setInputEdad] = useState(0);
     return (
       <>
         <h1>Actividad 3</h1>
         <div className="mb-3">
             <label htmlFor="inputEdad" className="form-label">Edad</label>
-            <input type="text" className="form-control" id="inputEdad" placeholder="18"/>
+            <input type="text" className="form-control" id="inputEdad" placeholder={inputEdad.toString()}  onChange={(e) => setInputEdad(Number(e.target.value))}/>
+            <span>{inputEdad>=18?'Es mayor de edad':'Es menor de edad'}</span>
         </div>
       </>
     );
-    };
+  };
+  
 
 
 
 PARTE 3
 •	Crear una interface con el nombre INombre con las propiedades nombre (string) y edad (number). Crear un array con el nombre “amigos” de tipo INombre con datos de tres amigos.
-    const amigos:INombre[3]=[
-        {nombre:'Luis',edad:21},
-        {nombre:'Pepe',edad:15},
-        {nombre:'Andrés',edad:46}
-    ]
-•	Recorrer el array y crear una lista con los amigos. Por cada item de lista sacaremos el nombre, la edad y un mensaje “es mayor de edad” o “es menor de edad” dependiendo de la edad.
-    ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-      <Edad></Edad>
-      <ul>
-      {amigos.map((x:INombre) => (
-        
-          <li>{x.nombre}{x.edad>=18?' es mayor de edad':' es menor de edad'} </li>
-        
-      ))}
-      </ul>
-  </React.StrictMode>,
+   import { INombre } from './INombre.interface';
+
+const amigos:INombre[3]=[
+    {nombre:'Luis',edad:21},
+    {nombre:'Pepe',edad:15},
+    {nombre:'Andrés',edad:46}
+  ]
+
+export const ListaAmigos = (): JSX.Element => {
+ 
+    return (
+      <>
+      <div>
+         <ul>
+            {amigos.map((x:INombre,indice:number) => (
+            <li key={indice}>{x.nombre}{x.edad>=18?' es mayor de edad':' es menor de edad'} </li> ))}
+        </ul>
+      </div>
+      </>
+    );
+  };
+  
 )
 PARTE 4
 •	Crear una carpeta interfaces. Dentro, crear la interface coctel.interface.ts. 
