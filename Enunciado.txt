@@ -1,0 +1,85 @@
+PARTE 1
+•	Crear una aplicación React con Vite con el nombre Actividad2.
+    --> npm create vite@latest aplicationprueba
+        cd aplicationprueba
+        npm install
+
+•	Eliminar todo el contenido de la carpeta src menos el archivo main.tsx y la carpeta assets.
+    -->Borramos lo que nos dicen
+
+•	Instalar Bootstrap y añadir la importación de estilos al archivo main.tsx.
+    --> npm install bootstrap
+        Añadimos en el main.tsx --> import 'bootstrap/dist/css/bootstrap.css';
+   
+•	Crear un componente llamado Edad.tsx que retorne el título Actividad 3.
+    --> Creo un fichero --> Edad.tsx
+
+    export const Edad = (): JSX.Element => {
+    
+    return (
+      <>
+        <h1>Actividad 3</h1>
+      </>
+        );
+    };
+  
+•	Renderizar el componente Edad desde el archivo main.tsx.
+    -->
+    import React from 'react'
+    import ReactDOM from 'react-dom/client'
+    import 'bootstrap/dist/css/bootstrap.css';
+    import { Edad } from './Edad';
+
+
+    ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+          <Edad></Edad>
+    </React.StrictMode>,
+    )
+
+
+PARTE 2
+•	Introducir un input para teclear una edad. Mediante condicionales ternarios, se sacará un mensaje “es mayor de edad” si la edad es mayor o igual a 18 u otro mensaje “es menor de edad” si la edad es menor a 18.
+    export const Edad = (): JSX.Element => {
+    
+    return (
+      <>
+        <h1>Actividad 3</h1>
+        <div className="mb-3">
+            <label htmlFor="inputEdad" className="form-label">Edad</label>
+            <input type="text" className="form-control" id="inputEdad" placeholder="18"/>
+        </div>
+      </>
+    );
+    };
+
+
+
+PARTE 3
+•	Crear una interface con el nombre INombre con las propiedades nombre (string) y edad (number). Crear un array con el nombre “amigos” de tipo INombre con datos de tres amigos.
+    const amigos:INombre[3]=[
+        {nombre:'Luis',edad:21},
+        {nombre:'Pepe',edad:15},
+        {nombre:'Andrés',edad:46}
+    ]
+•	Recorrer el array y crear una lista con los amigos. Por cada item de lista sacaremos el nombre, la edad y un mensaje “es mayor de edad” o “es menor de edad” dependiendo de la edad.
+    ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <Edad></Edad>
+      <ul>
+      {amigos.map((x:INombre) => (
+        
+          <li>{x.nombre}{x.edad>=18?' es mayor de edad':' es menor de edad'} </li>
+        
+      ))}
+      </ul>
+  </React.StrictMode>,
+)
+PARTE 4
+•	Crear una carpeta interfaces. Dentro, crear la interface coctel.interface.ts. 
+•	Implementar en la interface el código necesario para recibir los datos de la API thecocktaildb desde la url https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin.
+•	Crear un componente CoctelesGin.tsx
+•	Utilizar fetch para acceder a los datos de la url anterior
+•	Desarrollar un componente llamado CardCoctel.tsx. para mostrar el nombre del cóctel (strDrink) y su foto (strDrinkThumb). Utilizar el idDrink como clave para identificar cada card.
+•	Utilizar el hook useEffect para sacar los países de Europa al cargarse el componente.
+•	Controlar el error de la petición para sacar un mensaje si la carga de datos no se produce.
